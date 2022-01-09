@@ -1,29 +1,37 @@
+import json
 import time
+from collections import OrderedDict
+
 from Library import Config
 from Library import VideoCapture, Video_Work
 import cv2
 
 ### Выполнение основной функции
 Auditorium_Main_Sex, _, Auditorium_Main_Mood,Time_for_processing = VideoCapture.VideoCapture_and_Analyse()
+pos = 0
+err = 0
+
 while True:
     print('Choose Video')
-    ####################################################
-    #Заглушка для выбора видео
-    if (Auditorium_Main_Mood=='Happy'):
 
-        filename = 'resource\Video\Male.mp4'
-    elif(Auditorium_Main_Mood=='Anger'):
+    with open("answer.json", "r") as read_file:
+        data = json.load(read_file)
 
-        filename = 'resource\Video\Anger.mp4'
-    elif(Auditorium_Main_Mood=='Sad'):
+    data = data['VideoList']
+    filename = data[pos]
 
-        filename = 'resource\Video\Sad.mp4'
-    elif(Auditorium_Main_Mood=='Suprise'):
-        filename = 'resource\Video\Surprise.mp4'
-    else:
-        filename = 'resource\Video\\Female.mp4'
+    if (err>0):
+        pos+=1
+        if (pos>=len(data)):
+            pos = 0
 
-    Video_Work.showVideo(filename)
+    try:
+        filename =  Video_Work.showVideo(filename)
+    except:
+        filename = 'Anger'
+        filename = Video_Work.showVideo(filename)
+
+
     VideoDuration_second = Video_Work.Duration_Second(filename)
 
     ##Время на обработку можно установить в конфиге, 0 - автоматическое определение

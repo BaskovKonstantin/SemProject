@@ -9,7 +9,6 @@ def createConfig(path):
     """
     config = CP.ConfigParser()
     config.add_section("Settings")
-    config.set("Settings", "Если Time_for_processing == 0, то время для обработки определяется автоматически")
     config.set("Settings", "Time_for_processing", "0")
 
     config.set("Settings", "Capture_Device", "0")
@@ -18,6 +17,8 @@ def createConfig(path):
     config.set("Settings", "Capture_Video_Codec_Code", 'MPG4')
 
     config.set("Settings", "Counter_Limit", '20')
+
+    config.set("Settings", "VLC_patch", "D:\Work Application\VLC\\vlc.exe")
 
     with open(path, "w") as config_file:
         config.write(config_file)

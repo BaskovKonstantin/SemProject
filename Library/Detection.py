@@ -8,7 +8,7 @@ from openvino.inference_engine import IECore
     #Файлик с функциями детекции
 
 def Age_Gender_Detect(img):
-Age_Gender_Detect
+
     ie = IECore()
     Age_Gender_net_Patch='resource\OpenVINO Models\\age-gender-recognition-retail-0013\\FP16\\age-gender-recognition-retail-0013.xml'
 

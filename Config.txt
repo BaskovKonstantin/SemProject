@@ -1,0 +1,9 @@
+[Settings]
+time_for_processing = 0
+capture_device = 0
+capture_buffer = 120
+capture_fps = 30
+capture_video_codec_code = MPG4
+counter_limit = 20
+vlc_patch = D:\Work Application\VLC\vlc.exe
+
